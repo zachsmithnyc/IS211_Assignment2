@@ -24,6 +24,7 @@ def processData(file_content):
         items = line.split(",")
         ID = int(items[0])
         name = items[1]
+
         try:
             birthday = datetime.datetime.strptime(items[2], '%d/%m/%Y')
         except ValueError:
