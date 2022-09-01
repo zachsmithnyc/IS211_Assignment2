@@ -11,10 +11,11 @@ def downloadData(url):
     content = urllib.request.urlopen(url).read().decode('utf-8')
     return content
 
+
 def processData(file_content):
     user_data = dict()
 
-    for b, line in enumerate(file_content.split('/n')):
+    for b, line in enumerate(file_content.split('\n')):
         if b == 0:
             continue
         if len(line) == 0:
