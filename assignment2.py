@@ -4,7 +4,7 @@ import logging
 import datetime
 
 LOG_FILENAME = 'error.log'
-logging.basicConfig(filename=LOG_FILENAME, level=logging.debug,)
+logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG,)
 
 def downloadData(url):
     """Downloads the data"""
@@ -12,12 +12,12 @@ def downloadData(url):
     return content
 
 def processData(file_content):
-    birthday_data = dict()
+    user_data = dict()
 
     for b, line in file_content.split('/n'):
         if b == o:
             continue
-        if len(line) == 0
+        if len(line) == 0:
             continue
 
         items = line.split(",")
@@ -28,16 +28,25 @@ def processData(file_content):
         except ValueError:
             logging.error(f'invalid data: line #{b} for ID #{ID}')
 
-            birthday_data[ID] = (name, birthday)
+            user_data[ID] = (name, birthday)
 
 
-
-def displayPerson(id, personData):
-    pass
+def displayPerson(id, userData):
+    try:
+        name, birthday = userData[ID]
+        print(f'User #{ID} is {name} with a birthday of {birthday:%Y-%m-%d}')
+    except KeyError:
+        print(f'No user found with that id')
 
 def main(url):
     print(f"Running main with URL = {url}...")
-
+    content = downloadData(url)
+    userData = processData(content)
+    while True:
+        ID = int(input('Enter and ID:'))
+        if ID < 0:
+            break
+        displayPerson(ID, userData)
 
 if __name__ == "__main__":
     """Main entry point"""
