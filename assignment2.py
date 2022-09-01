@@ -25,11 +25,11 @@ def processData(file_content):
         ID = int(items[0])
         name = items[1]
         try:
-            birthday = datetime.datetime.strptime(items[2],'%d/%m/%Y')
+            birthday = datetime.datetime.strptime(items[2], '%d/%m/%Y')
         except ValueError:
             logging.error(f'invalid data: line #{b} for ID #{ID}')
 
-            user_data[ID] = (name, birthday)
+        user_data[ID] = (name, birthday)
     return user_data
 
 def displayPerson(ID, userData):
