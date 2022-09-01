@@ -14,8 +14,8 @@ def downloadData(url):
 def processData(file_content):
     user_data = dict()
 
-    for b, line in file_content.split('/n'):
-        if b == o:
+    for b, line in enumerate(file_content.split('/n')):
+        if b == 0:
             continue
         if len(line) == 0:
             continue
@@ -24,14 +24,14 @@ def processData(file_content):
         ID = int(items[0])
         name = items[1]
         try:
-            birthday = datetime.datetime.strptime(elements[2],'%d,%m,%Y')
+            birthday = datetime.datetime.strptime(items[2],'%d/%m/%Y')
         except ValueError:
             logging.error(f'invalid data: line #{b} for ID #{ID}')
 
             user_data[ID] = (name, birthday)
+    return user_data
 
-
-def displayPerson(id, userData):
+def displayPerson(ID, userData):
     try:
         name, birthday = userData[ID]
         print(f'User #{ID} is {name} with a birthday of {birthday:%Y-%m-%d}')
@@ -43,7 +43,7 @@ def main(url):
     content = downloadData(url)
     userData = processData(content)
     while True:
-        ID = int(input('Enter and ID:'))
+        ID = int(input('Enter an ID:'))
         if ID < 0:
             break
         displayPerson(ID, userData)
