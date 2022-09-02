@@ -1,5 +1,5 @@
 import argparse
-import urllib.request
+import requests
 import logging
 import datetime
 
@@ -7,9 +7,9 @@ LOG_FILENAME = 'error.log'
 logging.basicConfig(filename=LOG_FILENAME, level=logging.DEBUG,)
 
 def downloadData(url):
-    """Downloads the data"""
-    content = urllib.request.urlopen(url).read().decode('utf-8')
-    return content
+    """Returns data as a string"""
+    response = requests.get(url)
+    return response.text
 
 
 def processData(file_content):
