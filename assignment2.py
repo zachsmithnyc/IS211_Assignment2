@@ -28,7 +28,7 @@ def processData(file_content):
         try:
             birthday = datetime.datetime.strptime(items[2], '%d/%m/%Y')
         except ValueError:
-            logging.error(f'invalid data: line #{b} for ID #{ID}')
+            logging.error(f'Error processing line #{b} for ID #{ID}')
 
         user_data[ID] = (name, birthday)
     return user_data
