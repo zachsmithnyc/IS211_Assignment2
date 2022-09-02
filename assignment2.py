@@ -46,7 +46,7 @@ def main(url):
     userData = processData(content)
     while True:
         ID = int(input('Enter an ID:'))
-        if ID < 0:
+        if ID <= 0:
             break
         displayPerson(ID, userData)
 
