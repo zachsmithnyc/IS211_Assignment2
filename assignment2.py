@@ -50,6 +50,7 @@ def main(url):
             break
         displayPerson(ID, userData)
 
+
 if __name__ == "__main__":
     """Main entry point"""
     parser = argparse.ArgumentParser()
